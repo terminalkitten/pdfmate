@@ -30,6 +30,7 @@ class PDFGen(object):
         self.sources = sources if is_iterable(sources) else [sources]
         self.configuration = DEFAULT_CONFIG
         self.options = self.configuration.options
+        self.settings = self.configuration.settings
         self.environ = self.configuration.environ
         if options is not None:
             self.options.update(options)
@@ -38,6 +39,13 @@ class PDFGen(object):
         is_stdout = (not output_path) or (output_path == '-')
         try:
             page = await self.browser.newPage()
+
+            settings = self.settings
+            emulateMediaType = settings.get('emulateMedia', None)
+            if emulateMediaType:
+               await page.emulateMedia(emulateMediaType)
+
+
             if source.isString():
                 await page.setContent(source.to_s())
             elif source.isFileObj():
