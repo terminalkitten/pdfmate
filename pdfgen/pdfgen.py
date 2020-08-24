@@ -30,7 +30,7 @@ class PDFGen(object):
         self.sources = sources if is_iterable(sources) else [sources]
         self.configuration = DEFAULT_CONFIG
         self.options = self.configuration.options
-        self.settings = self.configuration.settings
+        self.pyppeteer = self.configuration.pyppeteer
         self.environ = self.configuration.environ
         if options is not None:
             self.options.update(options)
@@ -40,11 +40,22 @@ class PDFGen(object):
         try:
             page = await self.browser.newPage()
 
-            settings = self.settings
+            settings = self.pyppeteer
             emulateMediaType = settings.get('emulateMedia', None)
             if emulateMediaType:
-               await page.emulateMedia(emulateMediaType)
+                await page.emulateMedia(emulateMediaType)
 
+            bypassCSPFlag = settings.get('setBypassCSP', None)
+            if bypassCSPFlag:
+                await page.setBypassCSP(bypassCSPFlag)
+
+            requestInterceptionFlag = settings.get('setRequestInterception', None)
+            if requestInterceptionFlag:
+                await page.setRequestInterception(requestInterceptionFlag)
+
+            cookies = settings.get('setCookie', None)
+            if cookies:
+                await page.setCookie(cookies)
 
             if source.isString():
                 await page.setContent(source.to_s())
@@ -52,7 +63,7 @@ class PDFGen(object):
                 await page.setContent(source.source.read())
             else:
                 path = source.urlPath()
-                await page.goto(path)
+                await page.goto(path, self.configuration.page_options)
             options = self.options
             options.update(self._find_options_in_meta(await page.content()))
             if not is_stdout:
@@ -78,13 +89,17 @@ class PDFGen(object):
 
     async def to_pdf(self, path=None):
         result = None
-        self.browser = await launch(args=["--no-sandbox"], env=self.environ)
+        self.browser = await launch(
+            args=["--no-sandbox"] + self.configuration.browser_args, env=self.environ
+        )
         try:
             count = len(self.sources)
-            result = await asyncio.gather(*(
-                self.print_pyppeteer(source, self._get_output_path(path, i, count))
-                for i, source in enumerate(self.sources)
-            ))
+            result = await asyncio.gather(
+                *(
+                    self.print_pyppeteer(source, self._get_output_path(path, i, count))
+                    for i, source in enumerate(self.sources)
+                )
+            )
         except errors.NetworkError as e:
             raise InvalidSourceError(e)
         finally:
@@ -99,7 +114,9 @@ class PDFGen(object):
 
     def _get_output_path(self, path, i, count):
         if count > 1:
-            return NamedTemporaryFile(prefix=f'{path}-{i}-', suffix='.pdf', delete=False).name
+            return NamedTemporaryFile(
+                prefix=f'{path}-{i}-', suffix='.pdf', delete=False
+            ).name
         else:
             return path
 
@@ -111,16 +128,19 @@ class PDFGen(object):
         returns:
           dict: {config option: value}
         """
-        if (isinstance(content, io.IOBase)
-                or content.__class__.__name__ == 'StreamReaderWriter'):
+        if (
+            isinstance(content, io.IOBase)
+            or content.__class__.__name__ == 'StreamReaderWriter'
+        ):
             content = content.read()
 
         found = {}
 
         for x in re.findall('<meta [^>]*>', content):
             if re.search('name=["\']%s' % self.configuration.meta_tag_prefix, x):
-                name = re.findall('name=["\']%s([^"\']*)' %
-                                  self.configuration.meta_tag_prefix, x)[0]
+                name = re.findall(
+                    'name=["\']%s([^"\']*)' % self.configuration.meta_tag_prefix, x
+                )[0]
                 found[name] = re.findall('content=["\']([^"\']*)', x)[0]
 
         return found
