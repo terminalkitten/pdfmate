@@ -7,9 +7,9 @@ from collections import OrderedDict
 
 class Configuration(object):
     def __init__(self, options={}, pyppeteer={}, meta_tag_prefix='pdfgen-', environ=''):
-        self.update(options, settings, meta_tag_prefix, environ)
+        self.update(options, pyppeteer, meta_tag_prefix, environ)
 
-    def update(self, options=None, pyppeteer=None, meta_tag_prefix=None, environ=None):
+    def update(self, options=None, pyppeteer={}, meta_tag_prefix=None, environ=None):
         if meta_tag_prefix is not None:
             self.meta_tag_prefix = meta_tag_prefix
 
@@ -24,16 +24,10 @@ class Configuration(object):
         if options is not None:
             self.options = OrderedDict(options)
 
-        if pyppeteer is not None:
-            self.pyppeteer = OrderedDict(pyppeteer)
-
-        pageOptions = self.pyppeteer.get('pageOptions', None)
-        if pageOptions:
-            self.page_options = pageOptions
-
-        browserArgs = self.pyppeteer.get('browserArgs', None)
-        if pageOptions:
-            self.browser_args = browserArgs
+        # Always pass on empty dict
+        self.pyppeteer = OrderedDict(pyppeteer)
+        self.page_options = self.pyppeteer.get('pageOptions', None)
+        self.browser_args = self.pyppeteer.get('browserArgs', [])
 
         return self
 
