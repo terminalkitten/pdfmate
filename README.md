@@ -25,7 +25,10 @@ Async / sync wrapper for Pyppeteer
 
 #### Credits
 
+This is adapted version of PDFGen-Python and python-PDFKit library, so big thanks to them!
+
 - [PDFGen-Python](https://pypi.org/project/pdfgen/)
+- [python-pdfkit](https://github.com/JazzCore/python-pdfkit/)
 - [Pyppeteer](https://pypi.org/project/pyppeteer/)
 
 ### More
