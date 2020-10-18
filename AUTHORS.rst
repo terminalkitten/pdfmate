@@ -6,7 +6,7 @@ Pdfmate
 
 
 =====================
-Forked from Python-PDFKit authors
+Forked from Python-PDFGen and Python-PDFKit authors
 =====================
 
 * `Shivansh Saini <https://github.com/shivanshs9>`_
