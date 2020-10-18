@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import subprocess
-import sys
 from collections import OrderedDict
 
 

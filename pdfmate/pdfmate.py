@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 import asyncio
-import codecs
+
 import io
 import re
-import subprocess
-import sys
 from tempfile import NamedTemporaryFile
 
 from PyPDF2 import PdfFileMerger
@@ -12,16 +10,13 @@ from pyppeteer import errors, launch
 
 from .configuration import DEFAULT_CONFIG
 from .errors import InvalidSourceError
-from .source import Source
 from .utils import is_iterable
 
 
 class PDFMate(object):
     """
     Main class that does all generation routine.
-
     :param url_or_file: str - either a URL, a path to a file or a string containing HTML
-                       to convert
     :param type_: str - either 'url', 'file' or 'string'
     :param options: dict (optional) with pyppeteer options
     """
