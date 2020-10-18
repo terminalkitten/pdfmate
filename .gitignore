@@ -111,4 +111,9 @@ dmypy.json
 # Vscode
 .vscode/
 
+
+# NPM
+node_modules/
+yarn.lock
+
 # End of https://www.gitignore.io/api/python
