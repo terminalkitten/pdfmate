@@ -27,6 +27,13 @@ PYPPETEER_EMULATE_MEDIA_SETTINGS = {
 class TestPdfPyppeteerSettings(asynctest.TestCase):
     """Test pyppeteer settings"""
 
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        if os.path.exists('out.pdf'):
+            os.remove('out.pdf')
+
     @pytest.mark.asyncio
     async def test_pdf_page_emulate_media_setting(self):
         config = pdfmate.configuration(pyppeteer=PYPPETEER_EMULATE_MEDIA_SETTINGS)
