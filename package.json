@@ -14,5 +14,9 @@
       "git add",
       "flake8 --config=.flake8"
     ]
+  },
+  "dependencies": {
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.2"
   }
 }
