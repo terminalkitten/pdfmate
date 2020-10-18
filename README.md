@@ -6,6 +6,10 @@
 
 Async / sync wrapper for Pyppeteer
 
+### Install
+
+    pip install pdfmate
+
 ### Setup for development
 
     poetry install -v --no-root
