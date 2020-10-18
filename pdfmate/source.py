@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 import io
 import os
+from typing import NoReturn, Union
 
-import sys
-import os
-
-from typing import Union, NoReturn
 from .errors import InvalidSourceError
 
 
