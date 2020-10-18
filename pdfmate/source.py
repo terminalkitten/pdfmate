@@ -3,8 +3,6 @@ import io
 import os
 
 from typing import Union, NoReturn
-
-
 from .errors import InvalidSourceError
 
 
