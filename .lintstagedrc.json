@@ -1,0 +1,9 @@
+{
+  "*.py": [
+    "isort -sp .isort",
+    "git add",
+    "black --skip-string-normalization",
+    "git add",
+    "flake8 --config=.flake8"
+  ]
+}

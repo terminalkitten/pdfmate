@@ -1,3 +1,5 @@
 # PDFMate: HTML to PDF wrapper
 
-W.I.P.
+### Enable git-hooks with lint-staged
+
+    npx mrm lint-staged
