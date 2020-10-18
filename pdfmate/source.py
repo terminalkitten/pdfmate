@@ -2,25 +2,29 @@
 import io
 import os
 
+from typing import Union, NoReturn
+
+
 from .errors import InvalidSourceError
 
 
 class Source(object):
-    def __init__(self, url_or_file, type_):
+    def __init__(self, url_or_file, type_) -> None:
         self.source = url_or_file
         self.type = type_
 
-        if self.type is 'file':
+        if self.type == 'file':
             self.checkFiles()
 
-    def isUrl(self):
+    def isUrl(self) -> bool:
         return 'url' in self.type
 
-    def isFile(self, path=None):
-        # dirty hack to check where file is opened with codecs module
-        # (because it returns 'instance' type when encoding is specified
+    def isFile(self, path=None) -> bool:
         if path:
-            return isinstance(path, io.IOBase) or path.__class__.__name__ == 'StreamReaderWriter'
+            return (
+                isinstance(path, io.IOBase)
+                or path.__class__.__name__ == 'StreamReaderWriter'
+            )
         else:
             return 'file' in self.type
 
@@ -28,20 +32,20 @@ class Source(object):
         if not hasattr(self.source, 'read') and not os.path.exists(self.source):
             raise InvalidSourceError('No such file: %s' % self.source)
 
-    def isString(self):
+    def isString(self) -> bool:
         return 'string' in self.type
 
-    def isFileObj(self):
+    def isFileObj(self) -> bool:
         return hasattr(self.source, 'read')
 
-    def to_s(self):
+    def to_s(self) -> str:
         return self.source
 
-    def _append_protocol(self, path, protocol):
+    def _append_protocol(self, path, protocol) -> str:
         prefix = protocol if not path.startswith(protocol) else ''
         return prefix + path
 
-    def urlPath(self):
+    def urlPath(self) -> Union[str, NoReturn]:
         if self.isUrl():
             return self.to_s()
         elif self.isFile() and not self.isFileObj():
