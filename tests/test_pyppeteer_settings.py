@@ -8,11 +8,10 @@ import unittest
 import pytest
 
 import asynctest
-import pdfgen
+import pdfmate
 
-from pdfgen import PDFGen
 import pytest_asyncio.plugin
-from pdfgen.errors import InvalidSourceError
+from pdfmate.errors import InvalidSourceError
 
 TEST_PATH = os.path.dirname(os.path.realpath(__file__))
 
@@ -31,8 +30,8 @@ class TestPdfPyppeteerSettings(asynctest.TestCase):
 
     @pytest.mark.asyncio
     async def test_pdf_page_emulate_media_setting(self):
-        config = pdfgen.configuration(pyppeteer=PYPPETEER_EMULATE_MEDIA_SETTINGS)
-        pdf = await pdfgen.from_url(
+        config = pdfmate.configuration(pyppeteer=PYPPETEER_EMULATE_MEDIA_SETTINGS)
+        pdf = await pdfmate.from_url(
             'http://networkcheck.kde.org', 'out.pdf', options={'printBackground': True}
         )
 

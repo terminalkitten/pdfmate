@@ -1,12 +1,19 @@
 =====================
-Python-PDFKit authors
+Pdfmate
+=====================
+* `Terminalkitten <https://github.com/terminalkitten>`_
+
+
+
+=====================
+Forked from Python-PDFKit authors
 =====================
 
 * `Shivansh Saini <https://github.com/shivanshs9>`_
 * `Stanislav Golovanov <https://github.com/JazzCore>`_
 
 
-Contributors
+Python-PDFKit Contributors
 ------------
 
 * `Tomscytale <https://github.com/tomscytale>`_

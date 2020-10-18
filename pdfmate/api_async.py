@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .pdfgen import PDFGen
+from .pdfmate import PDFMate
 from .source import Source
 from .utils import is_iterable
 
@@ -15,8 +15,12 @@ async def from_url(url, output_path=None, options=None):
 
     Returns: output_path if provided else PDF Binary
     """
-    sources = [Source(urli, 'url') for urli in url] if is_iterable(url) else Source(url, 'url')
-    r = PDFGen(sources, options=options)
+    sources = (
+        [Source(urli, 'url') for urli in url]
+        if is_iterable(url)
+        else Source(url, 'url')
+    )
+    r = PDFMate(sources, options=options)
     return await r.to_pdf(output_path)
 
 
@@ -30,8 +34,12 @@ async def from_file(input, output_path=None, options=None):
 
     Returns: output_path if provided else PDF Binary
     """
-    sources = [Source(file, 'file') for file in input] if is_iterable(input) else Source(input, 'file')
-    r = PDFGen(sources, options=options)
+    sources = (
+        [Source(file, 'file') for file in input]
+        if is_iterable(input)
+        else Source(input, 'file')
+    )
+    r = PDFMate(sources, options=options)
     return await r.to_pdf(output_path)
 
 
@@ -47,7 +55,7 @@ async def from_string(input, output_path=None, options=None):
     """
 
     sources = Source(input, 'string')
-    r = PDFGen(sources, options=options)
+    r = PDFMate(sources, options=options)
     return await r.to_pdf(output_path)
 
 
@@ -61,5 +69,5 @@ async def from_sources(sources, output_path=None, options=None):
 
     Returns: output_path if provided else PDF Binary
     """
-    r = PDFGen(sources, options=options)
+    r = PDFMate(sources, options=options)
     return await r.to_pdf(output_path)

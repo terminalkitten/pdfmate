@@ -1,13 +1,12 @@
 [tool.poetry]
-name = "pdfgen"
-version = "1.0.6"
+name = "pdfmate"
+version = "1.0.1"
 description = "Pyppeteer-based async python wrapper to convert html to pdf"
-authors = ["Shivansh Saini <shivanshs9@gmail.com>"]
+authors = ["TK <dk@terminalkitten.com>"]
 license = "MIT"
-homepage = "https://github.com/shivanshs9/pdfgen-python"
+homepage = "https://github.com/terminalkitten"
 classifiers=[
     'Programming Language :: Python',
-    'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Topic :: Text Processing',
@@ -36,7 +35,7 @@ pytest-asyncio = "^0.12.0"
 asynctest = "^0.13.0"
 
 [tool.poetry.scripts]
-pdfgen-setup = 'pdfgen.setup:main'
+pdfmate-setup = 'pdfmate.setup:main'
 
 [build-system]
 requires = ["poetry>=0.12"]
