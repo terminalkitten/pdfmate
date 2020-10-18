@@ -14,18 +14,14 @@ Async / sync wrapper for Pyppeteer
 
     poetry install -v --no-root
 
-### Enable git-hooks with lint-staged
-
-    npx mrm lint-staged
-    npx husky install
-
 ### Run tests
 
     poetry run pytest tests/
 
-### Is it any good?
+### Enable git-hooks with lint-staged
 
-[Yes.](http://news.ycombinator.com/item?id=3067434)
+    npx mrm lint-staged
+    npx husky install
 
 #### Credits
 
@@ -35,6 +31,10 @@ This is adapted version of PDFGen-Python and python-PDFKit library, so big thank
 - [python-pdfkit](https://github.com/JazzCore/python-pdfkit/)
 - [Pyppeteer](https://pypi.org/project/pyppeteer/)
 
-### More
+### Other projects
 
-- [django-pdf-reactor]()
+- [django-pdf-reactor](https://github.com/terminalkitten/django-pdf-reactor/)
+
+### Is it any good?
+
+[Yes.](http://news.ycombinator.com/item?id=3067434)
