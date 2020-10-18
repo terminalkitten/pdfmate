@@ -2,6 +2,8 @@
 import io
 import os
 
+import sys
+
 from typing import Union, NoReturn
 from .errors import InvalidSourceError
 
