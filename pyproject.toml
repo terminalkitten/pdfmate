@@ -28,6 +28,7 @@ python = "^3.6.1"
 pyppeteer = "^0.2.2"
 PyPDF2 = "^1.26.0"
 syncasync = "^20180812"
+asgiref = "^3.3.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.2"
