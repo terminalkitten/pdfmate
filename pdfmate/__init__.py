@@ -8,9 +8,9 @@ __author__ = 'terminalkitten'
 __version__ = '0.0.1'
 __license__ = 'MIT'
 
-import pdfmate.api_sync as sync
+import pdfmate.api_sync as sync  # noqa
 
-from .api_async import from_file, from_sources, from_string, from_url
-from .configuration import configuration
-from .pdfmate import PDFMate
-from .source import Source
+from .api_async import from_file, from_sources, from_string, from_url  # noqa
+from .configuration import configuration  # noqa
+from .pdfmate import PDFMate  # noqa
+from .source import Source  # noqa
