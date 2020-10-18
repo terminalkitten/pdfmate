@@ -90,7 +90,11 @@ class PDFGen(object):
     async def to_pdf(self, path=None):
         result = None
         self.browser = await launch(
-            args=["--no-sandbox"] + self.configuration.browser_args, env=self.environ
+            args=["--no-sandbox"] + self.configuration.browser_args,
+            env=self.environ,
+            handleSIGINT=False,
+            handleSIGTERM=False,
+            handleSIGHUP=False,
         )
         try:
             count = len(self.sources)
