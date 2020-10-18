@@ -5,12 +5,11 @@ import os
 import sys
 import unittest
 
-import pytest
-
 import asynctest
-import pdfmate
-
+import pytest
 import pytest_asyncio.plugin
+
+import pdfmate
 from pdfmate.errors import InvalidSourceError
 
 TEST_PATH = os.path.dirname(os.path.realpath(__file__))
