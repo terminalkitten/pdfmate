@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from syncasync import async_to_sync
 
-from pdfgen import api_async
+from pdfmate import api_async
 
 
 def from_url(url, output_path=None, options=None):

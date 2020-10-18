@@ -16,7 +16,7 @@ from .source import Source
 from .utils import is_iterable
 
 
-class PDFGen(object):
+class PDFMate(object):
     """
     Main class that does all generation routine.
 
