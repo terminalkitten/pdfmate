@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
-import codecs
-import io
 import os
-import sys
-import unittest
 
 import asynctest
 import pytest
-import pytest_asyncio.plugin
 
 import pdfmate
-from pdfmate.errors import InvalidSourceError
 
 TEST_PATH = os.path.dirname(os.path.realpath(__file__))
 
@@ -41,6 +35,7 @@ class TestPdfPyppeteerSettings(asynctest.TestCase):
             'http://networkcheck.kde.org', 'out.pdf', options={'printBackground': True}
         )
 
+        self.assertEqual(pdf, 'out.pdf')
         self.assertEqual(config.pyppeteer['emulateMedia'], 'screen')
 
 

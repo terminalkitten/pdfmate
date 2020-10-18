@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
-import codecs
-import io
+
 import os
-import sys
-import unittest
 
 import asynctest
 import pytest
-import pytest_asyncio.plugin
 
 import pdfmate
 from pdfmate.errors import InvalidSourceError
@@ -41,7 +37,7 @@ class TestPdfGenerationAsyncApi(asynctest.TestCase):
     @pytest.mark.asyncio
     async def test_raise_error_with_invalid_url(self):
         with self.assertRaises(InvalidSourceError):
-            pdf = await pdfmate.from_url('wrongurl.com', 'out.pdf')
+            await pdfmate.from_url('wrongurl.com', 'out.pdf')
 
     @pytest.mark.asyncio
     async def test_raise_error_with_invalid_file_path(self):

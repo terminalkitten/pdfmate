@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
-import codecs
-import io
-import os
-import sys
-import unittest
 
-import pytest
+import os
+import unittest
 
 import pdfmate
 from pdfmate.errors import InvalidSourceError
@@ -36,7 +32,7 @@ class TestPdfGenerationSyncApi(unittest.TestCase):
 
     def test_raise_error_with_invalid_url(self):
         with self.assertRaises(InvalidSourceError):
-            pdf = pdfmate.sync.from_url('wrongurl.com', 'out.pdf')
+            pdfmate.sync.from_url('wrongurl.com', 'out.pdf')
 
     def test_pdf_generation_from_file_same_directory(self):
         with open('testfile.html', 'w') as f:
