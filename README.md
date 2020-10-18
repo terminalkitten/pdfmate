@@ -1,5 +1,5 @@
-[![PyPI](https://img.shields.io/pypi/v/pyppeteer.svg)](https://pypi.python.org/pypi/pdfmate)
-[![PyPI version](https://img.shields.io/pypi/pyversions/pyppeteer.svg)](https://pypi.python.org/pypi/pdfmate)
+[![PyPI](https://img.shields.io/pypi/v/pdfmate)](https://pypi.python.org/pypi/pdfmate)
+[![PyPI version](https://img.shields.io/pypi/pyversions/pdfmate)](https://pypi.python.org/pypi/pdfmate)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 # PDFMate
