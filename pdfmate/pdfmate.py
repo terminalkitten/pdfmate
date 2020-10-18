@@ -3,6 +3,7 @@ import asyncio
 import io
 import re
 from tempfile import NamedTemporaryFile
+from typing import BinaryIO, Dict, NoReturn, Union
 
 from PyPDF2 import PdfFileMerger
 from pyppeteer import errors, launch
@@ -26,10 +27,12 @@ class PDFMate(object):
         self.options = self.configuration.options
         self.pyppeteer = self.configuration.pyppeteer
         self.environ = self.configuration.environ
+        self.browser = None
+
         if options is not None:
             self.options.update(options)
 
-    async def print_pyppeteer(self, source, output_path):
+    async def print_pyppeteer(self, source, output_path) -> Union[str, BinaryIO]:
         is_stdout = (not output_path) or (output_path == '-')
         try:
             page = await self.browser.newPage()
@@ -68,7 +71,7 @@ class PDFMate(object):
         finally:
             await page.close()
 
-    async def merge_pdfs(self, input_pdfs, output_path=None):
+    async def merge_pdfs(self, input_pdfs, output_path=None) -> Union[str, BinaryIO]:
         is_stdout = (not output_path) or (output_path == '-')
         merger = PdfFileMerger()
         for pdf in input_pdfs:
@@ -81,7 +84,7 @@ class PDFMate(object):
 
         return output.getvalue() if is_stdout else output_path
 
-    async def to_pdf(self, path=None):
+    async def to_pdf(self, path=None) -> Union[str, BinaryIO, NoReturn]:
         result = None
         self.browser = await launch(
             args=["--no-sandbox"] + self.configuration.browser_args,
@@ -110,7 +113,7 @@ class PDFMate(object):
                 result = result[0]
         return result
 
-    def _get_output_path(self, path, i, count):
+    def _get_output_path(self, path, i, count) -> str:
         if count > 1:
             return NamedTemporaryFile(
                 prefix=f'{path}-{i}-', suffix='.pdf', delete=False
@@ -118,7 +121,7 @@ class PDFMate(object):
         else:
             return path
 
-    def _find_options_in_meta(self, content):
+    def _find_options_in_meta(self, content) -> Dict:
         """Reads 'content' and extracts options encoded in HTML meta tags
 
         :param content: str or file-like object - contains HTML to parse
