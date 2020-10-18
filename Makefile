@@ -1,8 +1,4 @@
-.PHONY: typechecker test
-
-
-typechecker:
-	poetry run pyre --search-path $(poetry env info -p)/site-packages/	
+.PHONY: test
 
 test:
 	poetry run pytest tests/ --disable-pytest-warnings

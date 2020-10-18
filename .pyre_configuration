@@ -1,8 +1,0 @@
-{
-  "binary": "/Users/dk/Library/Caches/pypoetry/virtualenvs/pdfmate-OhxN3-Uz-py3.8/bin/pyre.bin",
-  "source_directories": [
-    "."
-  ],
-  "taint_models_path": "/Users/dk/Library/Caches/pypoetry/virtualenvs/pdfmate-OhxN3-Uz-py3.8/lib",
-  "typeshed": "/Users/dk/Library/Caches/pypoetry/virtualenvs/pdfmate-OhxN3-Uz-py3.8/lib/pyre_check/typeshed"
-}
