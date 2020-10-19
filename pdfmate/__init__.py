@@ -5,7 +5,7 @@ Pyppeteer-based async python wrapper to convert html to pdf
 
 __forked_from__ = 'Shivansh Saini'
 __author__ = 'terminalkitten'
-__version__ = '0.4.1'
+__version__ = '0.4.2'
 __license__ = 'MIT'
 
 import pdfmate.api_sync as sync  # noqa

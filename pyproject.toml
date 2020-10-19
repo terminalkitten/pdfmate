@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pdfmate"
-version = "0.4.1"
+version = "0.4.2"
 description = "Pyppeteer-based async python wrapper to convert html to pdf"
 authors = ["TK <dk@terminalkitten.com>"]
 license = "MIT"
