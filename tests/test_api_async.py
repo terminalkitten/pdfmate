@@ -28,6 +28,11 @@ class TestPdfGenerationAsyncApi(asynctest.TestCase):
         self.assertEqual(pdf, 'out.pdf')
 
     @pytest.mark.asyncio
+    async def test_pdf_generation_from_html_to_stream(self):
+        pdf = await pdfmate.from_string('html', options={'format': 'Letter'})
+        self.assertEqual(type(pdf) is bytes, True)
+
+    @pytest.mark.asyncio
     async def test_pdf_generation_from_url(self):
         pdf = await pdfmate.from_url(
             'http://networkcheck.kde.org', 'out.pdf', options={'format': 'Letter'}
