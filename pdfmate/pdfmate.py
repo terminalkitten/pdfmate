@@ -87,7 +87,8 @@ class PDFMate(object):
     async def to_pdf(self, path=None) -> Union[str, BinaryIO, NoReturn]:
         result = None
         self.browser = await launch(
-            args=["--no-sandbox"] + self.configuration.browser_args,
+            args=["--no-sandbox --allow-insecure-localhost"]
+            + self.configuration.browser_args,
             env=self.environ,
             handleSIGINT=False,
             handleSIGTERM=False,
