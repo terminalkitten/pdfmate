@@ -90,6 +90,8 @@ class PDFMate(object):
             args=["--no-sandbox --allow-insecure-localhost"]
             + self.configuration.browser_args,
             env=self.environ,
+            headless=not self.options.get('debug', True),
+            dumpio=self.options.get('debug', False),
             handleSIGINT=False,
             handleSIGTERM=False,
             handleSIGHUP=False,
